@@ -11,7 +11,7 @@ class Bill:
     
     @classmethod #Todo
     def create_daily_bill(cls, client, amount):
-        today = datetime.date.now()
+        today = datetime.now().date()
         return cls(client, amount, today)
     
 bill1 = Bill.create_daily_bill("John", 100)  #create a bill for John with an amount of 100
