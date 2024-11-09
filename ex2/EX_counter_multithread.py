@@ -8,30 +8,28 @@ class Counter:
 
     def increment(self):
         with self.lock:
-            self.value += 1
-            print(self.value)
-            time.sleep(1)
+            for i in range(10):
+                self.value += 1
+                print(self.value)
+                time.sleep(1)
 
     def decrement(self):
         with self.lock:
-            self.value -= 1
-            print(self.value)
-            time.sleep(1)
+            for i in range(10):
+                self.value -= 1
+                print(self.value)
+                time.sleep(1)
 
 counter1 = Counter(0)
 counter2 = Counter(11)
 
-threads1 = [threading.Thread(target=counter1.increment) for _ in range(10)]
-threads2 = [threading.Thread(target=counter2.decrement) for _ in range(10)]
+thread1 = threading.Thread(target=counter1.increment)
+thread2 = threading.Thread(target=counter2.decrement)
 
-for t in threads1:
-    t.start()
+thread1.start()
 
-for t in threads2:
-    t.start()
+thread2.start()
 
-for t in threads1:
-    t.join()
+thread1.join()
 
-for t in threads2:
-    t.join()
+thread2.join()
