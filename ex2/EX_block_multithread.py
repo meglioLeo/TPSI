@@ -7,15 +7,16 @@ class Block:
         self.lock = threading.Lock()
         
     def calculate(self):
-        for i in range(1000000):
+        for i in range(1000001):
             with self.lock:
-                self.value += 1
+                self.value = self.value + i
     
     def print_status(self, thread_name):
         while thread_name.is_alive():
             with self.lock:
                 print(self.value)
                 time.sleep(0.5)
+        print(f"Final value: {self.value}")
             
 block = Block()
 
