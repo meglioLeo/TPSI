@@ -1,6 +1,8 @@
 import threading
 import time
 
+sem = threading.Semaphore(0)  # Create a semaphore with an initial value of 0
+
 class Counter:
     def __init__(self, start_value):
         self.value = start_value      # Initialize the value that will be changed by the threads
@@ -10,11 +12,13 @@ class Counter:
         with self.lock:
             for i in range(10):
                 self.value += 1
-                print(f"Incrementi thread: {self.value}")
+                print(f"Incrementing thread: {self.value}")
                 time.sleep(1)   # Simulate a delay to make the thread execution slower
+        sem.release()
 
     def decrement(self):
         with self.lock:
+            sem.acquire()
             for i in range(10):
                 self.value -= 1     
                 print(f"Decrementing thread: {self.value}")
