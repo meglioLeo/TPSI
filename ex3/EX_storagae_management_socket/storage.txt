@@ -1,0 +1,3 @@
+mele, 10
+pere, 2
+banane, 34
