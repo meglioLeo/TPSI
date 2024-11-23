@@ -1,5 +1,6 @@
 import socket
 import logging
+import struct
 
 logging.basicConfig(level=logging.INFO, format="%(asctime)s - %(levelname)s - %(message)s")
 
@@ -8,17 +9,18 @@ products = []
 class Stock:
     
     @staticmethod
-    def get_products():  #TODO: Implement this method
+    def get_products(product_list):
         storageFile = open("storage.txt", "r")
         for line in storageFile:
-            products.append(line)      
+            product_list.append(line)      
         storageFile.close()
-        return products
+        return product_list
     
 class TCPServer:
     
     def __init__(self, host: str = "0.0.0.0", port: int = 1234):
         self.server_address = (host, port)
+        self.buffer_size = 1024
         self.socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
         
     def start(self):
@@ -48,7 +50,25 @@ class TCPServer:
                 
                 if request == "STOCK?":
                     self.handle_stock_request(client_socket)
+                elif request == "MODIFY_QUANTITY?":
+                    self.handle_modify_quantity_request
                 else:
                     logging.warning(f"Invalid request: {request}")
             except Exception as e:
                 logging.error(f"Error handling client request: {e}")
+
+    def handle_stock_request(self, client_address):
+        try:
+            products = Stock.get_products(products)
+            logging.info("Got products")
+
+            response = struct.pack("fff", products)    #fff = tre float
+            self.socket.sendto(f"response= {response}")
+            logging.info("Checked remainig items in storage file")
+        except Exception as e:
+            logging.error(f"Error sending response to {client_address}")
+
+    def handle_modify_quantity_request():
+        return 0
+
+TCPServer().start()
