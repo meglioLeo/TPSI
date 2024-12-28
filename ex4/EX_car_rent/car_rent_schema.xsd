@@ -65,7 +65,7 @@
                                 </xs:simpleType>
                             </xs:element>
 
-                            <xs:element name="trunk_voume">
+                            <xs:element name="trunk_volume">
                                 <xs:simpleType>
                                     <xs:restriction base="xs:positiveInteger">
                                         <xs:minInclusive value="100"/>

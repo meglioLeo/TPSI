@@ -37,7 +37,7 @@ def pprint_valid_data(xml_file,xsd_file):
 
 def main():
     xml_file = os.path.join(script_path, "car_rent.xml")
-    xsd_file = os.path.join(script_path, "car_rent.xsd")
+    xsd_file = os.path.join(script_path, "car_rent_schema.xsd")
     setup_logger()
     pprint_valid_data(xml_file,xsd_file)
     
