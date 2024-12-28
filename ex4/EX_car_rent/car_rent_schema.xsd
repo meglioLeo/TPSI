@@ -5,7 +5,7 @@
         <xs:complexType>
             <xs:sequence>
 
-                <xs:element name="car" maxOccurs="unbounded">  <!--DA GUARDARE IL SIGNIFICATO DI maxOccurs-->
+                <xs:element name="car" maxOccurs="unbounded">
                     <xs:complexType>
                         <xs:sequence>
 
@@ -21,11 +21,9 @@
                                 </xs:simpleType>
                             </xs:element>
 
-                            <xs:element name="brand" type="xs:string">
-                            </xs:element>
+                            <xs:element name="brand" type="xs:string"/>
 
-                            <xs:element name="model" type="xs:string">
-                            </xs:element>
+                            <xs:element name="model" type="xs:string"/>
 
                             <xs:element name="engine_size">
                                 <xs:simpleType>
@@ -76,6 +74,13 @@
                                 </xs:simpleType>
                             </xs:element>
 
+                            <xs:element name="agencies" maxOccurs="unbounded" minOccurs="0">
+                                <xs:complexType>
+                                    <xs:attribute name="name" type="xs:string"/>
+                                    <xs:attribute name="city" type="xs:string"/>
+                                </xs:complexType>   
+                            </xs:element>
+                        
                         </xs:sequence>
                     </xs:complexType>
                 </xs:element>
