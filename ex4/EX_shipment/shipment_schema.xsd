@@ -13,8 +13,8 @@
                             <xs:element name="location" maxOccurs="unbounded">
                                 <xs:complexType>
                                     <xs:sequence>
-                                        <xs:element name="place"/>
-                                        <xs:element name="date" type="xs:date"/>
+                                        <xs:element name="place" type="xs:string"/>
+                                        <xs:element name="date" type="xs:dateTime"/>
                                     </xs:sequence>
                                 </xs:complexType>
                             </xs:element>

@@ -1,0 +1,39 @@
+<shipments>
+
+    <shipment>
+        <code>0123456789</code>
+        <location>
+            <place>Pisa, aeroporto</place>
+            <date>2022-03-7T12:00:15</date>
+        </location>
+        <location>
+            <place>Pisa, stazione</place>
+            <date>2022-03-7T18:00:30</date>
+        </location>
+        <location>
+            <place>Livorno, stazione</place>
+            <date>2022-03-7T22:15:45</date>
+        </location>
+    </shipment>
+
+    <shipment>
+        <code>9876543210</code>
+        <location>
+            <place>Livorno, porto</place>
+            <date>2022-03-7T23:00:00</date>
+        </location>
+        <location>
+            <place>Genova, porto</place>
+            <date>2022-03-8T06:00:15</date>
+        </location>
+        <location>
+            <place>Genova, stazione</place>
+            <date>2022-03-8T10:30:30</date>
+        </location>
+        <location>
+            <place>Milano, stazione</place>
+            <date>2022-03-8T14:45:45</date>
+        </location>
+    </shipment>
+    
+</shipments>
