@@ -30,7 +30,7 @@
         <model>Astra</model>
         <engine_size>1600</engine_size>
         <power>120</power>
-        <fueling>diesel</fueling>
+        <fueling>hybrid</fueling>
         <passenger_amount>5</passenger_amount>
         <trunk_volume>370</trunk_volume>
         <agencies name="CarVoyage" city="Paris"/>
@@ -41,7 +41,7 @@
         <model>Clio</model>
         <engine_size>1200</engine_size>
         <power>75</power>
-        <fueling>gasoline</fueling>
+        <fueling>hybrid</fueling>
         <passenger_amount>5</passenger_amount>
         <trunk_volume>300</trunk_volume>
         <agencies name="KeyDrive" city="Madrid"/>
