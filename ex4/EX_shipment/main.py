@@ -3,6 +3,13 @@ import logging
 import pprint
 import os
 from datetime import datetime
+import xml.etree.ElementTree as ET
+
+"""
+This code does not follow the instructions properly: 
+it doesn't show the list of just the following locations of a shipment,
+but it shows all the locations of all the shipments.
+"""
 
 global script_path
 script_path = os.path.dirname(os.path.abspath(__file__))
@@ -52,17 +59,16 @@ class handle_shipment:
                     shipment_locations.append(x)
                 self.shipments.append(shipment_locations)  # Aggiungi la spedizione all'array principale
             return self.shipments
-            
-            """
-            for i, shipment in enumerate(self.shipments, start=1):
-                print(f"Shipment {i}:")
-                for loc in shipment:
-                    print(f"  {loc}")
-            """
                     
         except Exception as e:
             error_message = f"An unexpected error occurred while processing {xml_file}: {e}"
             logging.error(error_message)
+            
+    def print_shipments(self):
+        for i, shipment in enumerate(self.shipments, start=1):
+            print(f"Shipment {i}:")
+            for loc in shipment:
+                print(f"  {loc}")
             
     def calculate_shipment_time(self, index):
         try:
@@ -71,7 +77,6 @@ class handle_shipment:
                 print("No locations found for this shipment")
                 return
             
-            # Estrai la prima e l'ultima data
             first_date_str = shipment[0].date
             last_date_str = shipment[-1].date  #takes the last element of the array
             
@@ -89,21 +94,52 @@ class handle_shipment:
         except Exception as e:
             print(f"An unexpected error occurred: {e}")
         
-class times_to_xml:
-    pass
+class time_in_xml:
+    def __init__(self):
+        self.times = []
+
+    def get_time(self, shipments_arr):
+        for shipment in shipments_arr:
+            shipment_time = []
+            for i in range(len(shipment) - 1):  # Iterate over indices, stopping at the second-last element
+                date1 = shipment[i].date  # Access current element's date
+                date2 = shipment[i + 1].date  # Access next element's date
+                
+                # Convert string dates to datetime objects
+                date1 = datetime.fromisoformat(date1)
+                date2 = datetime.fromisoformat(date2)
+                difference_in_seconds = (date2 - date1).total_seconds()
+                shipment_time.append(difference_in_seconds)
+            self.times.append(shipment_time)
+        """     
+        print("Times between locations:")
+        pprint.pprint(self.times)
+        """
+    
+    def to_xml(self, xml_file):
+        root = ET.Element("times")
+        for shipment_times in self.times:
+            shipment_element = ET.SubElement(root, "shipment")
+            for time in shipment_times:
+                time_element = ET.SubElement(shipment_element, "time")
+                time_element.text = str(time)
+        
+        tree = ET.ElementTree(root)
+        with open(xml_file, "wb") as f:
+            tree.write(f, encoding="utf-8", xml_declaration=True)
+            
 
 def main():
     xmlfile = os.path.join(script_path, "shipment.xml")
     xsdfile = os.path.join(script_path, "shipment_schema.xsd")
     setup_logger()
-    spedizioni = handle_shipment()
-    shipments = []
-    shipments = spedizioni.get_Locations(xmlfile, xsdfile)
-    for i, shipment in enumerate(shipments, start=1):
-        print(f"Shipment {i}:")
-        for loc in shipment:
-            print(f"  {loc}")
-    spedizioni.calculate_shipment_time(0)
-                
+    spedizioni = handle_shipment()   #creates an object of the class handle_shipment
+    spedizioni.get_Locations(xmlfile, xsdfile)   #fills an array with the arrays of Location objects
+    spedizioni.print_shipments()   #prints the array of Location objects
+    spedizioni.calculate_shipment_time(0)   #calculates the time between the first and the last location of the selected shipment
+    time_calculator = time_in_xml()   #creates an object of the class time_in_xml
+    time_calculator.get_time(spedizioni.shipments)   #fills an array with the time between the locations of each shipment
+    time_calculator.to_xml(os.path.join(script_path, "times.xml"))   #creates an xml file with the datas of the array
+    
 if __name__ == "__main__":
     main()
