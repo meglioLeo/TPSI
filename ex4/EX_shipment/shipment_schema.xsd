@@ -5,7 +5,7 @@
         <xs:complexType>
             <xs:sequence>
 
-                <xs:element name="shipment">
+                <xs:element name="shipment" maxOccurs="unbounded">
                     <xs:complexType>
                         <xs:sequence>
                             <xs:element name="code" type="xs:integer"/>
