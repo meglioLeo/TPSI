@@ -79,7 +79,7 @@
                                                             </xs:restriction>
                                                         </xs:simpleType>
                                                     </xs:element>
-                                                    <xs:element name="reviw">
+                                                    <xs:element name="review">
                                                         <xs:simpleType>
                                                             <xs:restriction base="xs:string">
                                                                 <xs:maxLength value="500"/>

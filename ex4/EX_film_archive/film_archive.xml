@@ -33,17 +33,17 @@
             <rating>
                 <rating_date>2025-01-01</rating_date>
                 <value>9</value>
-                <reviw>Mind-blowing visuals and plot twists.</reviw>
+                <review>Mind-blowing visuals and plot twists.</review>
             </rating>
             <rating>
                 <rating_date>2025-01-02</rating_date>
                 <value>10</value>
-                <reviw>Christopher Nolan at his best!</reviw>
+                <review>Christopher Nolan at his best!</review>
             </rating>
             <rating>
                 <rating_date>2025-01-03</rating_date>
                 <value>8</value>
-                <reviw>A bit confusing but still a masterpiece.</reviw>
+                <review>A bit confusing but still a masterpiece.</review>
             </rating>
         </ratings>
     </film>
@@ -84,17 +84,17 @@
             <rating>
                 <rating_date>2025-01-04</rating_date>
                 <value>10</value>
-                <reviw>Changed the way we see action films forever.</reviw>
+                <review>Changed the way we see action films forever.</review>
             </rating>
             <rating>
                 <rating_date>2025-01-05</rating_date>
                 <value>9</value>
-                <reviw>Excellent special effects and storyline.</reviw>
+                <review>Excellent special effects and storyline.</review>
             </rating>
             <rating>
                 <rating_date>2025-01-06</rating_date>
                 <value>8</value>
-                <reviw>Groundbreaking, but slightly dated now.</reviw>
+                <review>Groundbreaking, but slightly dated now.</review>
             </rating>
         </ratings>
     </film>
@@ -131,17 +131,17 @@
             <rating>
                 <rating_date>2025-01-07</rating_date>
                 <value>10</value>
-                <reviw>Visually stunning and deeply emotional.</reviw>
+                <review>Visually stunning and deeply emotional.</review>
             </rating>
             <rating>
                 <rating_date>2025-01-08</rating_date>
                 <value>9</value>
-                <reviw>A journey through space and the human heart.</reviw>
+                <review>A journey through space and the human heart.</review>
             </rating>
             <rating>
                 <rating_date>2025-01-09</rating_date>
                 <value>10</value>
-                <reviw>Science fiction at its absolute peak.</reviw>
+                <review>Science fiction at its absolute peak.</review>
             </rating>
         </ratings>
     </film>
@@ -178,17 +178,17 @@
             <rating>
                 <rating_date>2025-01-10</rating_date>
                 <value>7</value>
-                <reviw>A captivating story, but the pacing felt slow at times.</reviw>
+                <review>A captivating story, but the pacing felt slow at times.</review>
             </rating>
             <rating>
                 <rating_date>2025-01-11</rating_date>
                 <value>6</value>
-                <reviw>Interesting concept, but I struggled to connect with the characters.</reviw>
+                <review>Interesting concept, but I struggled to connect with the characters.</review>
             </rating>
             <rating>
                 <rating_date>2025-01-12</rating_date>
                 <value>7</value>
-                <reviw>Good performances, but it didn’t live up to the hype for me.</reviw>
+                <review>Good performances, but it didn’t live up to the hype for me.</review>
             </rating>
         </ratings>
     </film>
