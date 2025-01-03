@@ -8,8 +8,8 @@
         <date>2025-01-03T10:30:00</date>
         <place>Roma</place>
         <exams>
-            <exam_date>2025-01-02T09:00:00</exam_date>
-            <operator_id>000000101</operator_id>
+            <exam_date>2025-01-06T09:00:00</exam_date>
+            <operator_id>123456789</operator_id>
             <machine_serial_number>12345</machine_serial_number>
             <machine_serial_number>67890</machine_serial_number>
             <exam_name>Analisi del sangue</exam_name>
@@ -28,8 +28,8 @@
         <date>2025-01-03T11:00:00</date>
         <place>Milano</place>
         <exams>
-            <exam_date>2025-01-02T14:00:00</exam_date>
-            <operator_id>000000202</operator_id>
+            <exam_date>2025-01-03T14:00:00</exam_date>
+            <operator_id>234567891</operator_id>
             <machine_serial_number>54321</machine_serial_number>
             <exam_name>Esame delle urine</exam_name>
             <exam_result>1.2</exam_result>
@@ -47,8 +47,8 @@
         <date>2025-01-03T12:00:00</date>
         <place>Napoli</place>
         <exams>
-            <exam_date>2025-01-01T10:00:00</exam_date>
-            <operator_id>000000303</operator_id>
+            <exam_date>2025-01-04T10:00:00</exam_date>
+            <operator_id>345678912</operator_id>
             <machine_serial_number>98765</machine_serial_number>
             <exam_name>Test del glucosio</exam_name>
             <exam_result>4.9</exam_result>
@@ -66,8 +66,8 @@
         <date>2025-01-03T13:30:00</date>
         <place>Firenze</place>
         <exams>
-            <exam_date>2025-01-02T11:00:00</exam_date>
-            <operator_id>000000404</operator_id>
+            <exam_date>2025-01-03T11:00:00</exam_date>
+            <operator_id>456789123</operator_id>
             <machine_serial_number>11223</machine_serial_number>
             <exam_name>Test del colesterolo</exam_name>
             <exam_result>190.0</exam_result>
@@ -85,8 +85,8 @@
         <date>2025-01-03T14:00:00</date>
         <place>Venezia</place>
         <exams>
-            <exam_date>2025-01-02T16:00:00</exam_date>
-            <operator_id>000000505</operator_id>
+            <exam_date>2025-01-05T16:00:00</exam_date>
+            <operator_id>567891234</operator_id>
             <machine_serial_number>44556</machine_serial_number>
             <exam_name>ECG</exam_name>
             <exam_result>72.0</exam_result>
