@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<storage>
+    <storage_id>ABC1234</storage_id>
+    <categories>
+        <category>
+            <category_name>Elettronica</category_name>
+            <products>
+                <product>
+                    <product_name>Smartphone</product_name>
+                    <product_code>ELE-001-SMP</product_code>
+                    <description>Smartphone con schermo OLED</description>
+                    <price>799.99</price>
+                    <quantity>50</quantity>
+                </product>
+                <product>
+                    <product_name>Laptop</product_name>
+                    <product_code>ELE-002-LPT</product_code>
+                    <description>Portatile con processore Intel i7</description>
+                    <price>1200.00</price>
+                    <quantity>30</quantity>
+                </product>
+            </products>
+        </category>
+        <category>
+            <category_name>Alimentari</category_name>
+            <products>
+                <product>
+                    <product_name>Latte</product_name>
+                    <product_code>FOO-001-MLK</product_code>
+                    <description>Latte fresco intero</description>
+                    <price>1.50</price>
+                    <quantity>200</quantity>
+                    <expiration>2025-02-15</expiration>
+                </product>
+                <product>
+                    <product_name>Pane</product_name>
+                    <product_code>FOO-002-BRD</product_code>
+                    <description>Pane integrale</description>
+                    <price>2.00</price>
+                    <quantity>100</quantity>
+                    <expiration>2025-01-10</expiration>
+                </product>
+            </products>
+        </category>
+    </categories>
+    <operation_register>
+        <operation>
+            <operation_date>2025-01-01</operation_date>
+            <operation_time>10:30:00</operation_time>
+            <operation_product>ELE-001-SMP</operation_product>
+            <operation_quantity>10</operation_quantity>
+            <operation_type>in</operation_type>
+        </operation>
+        <operation>
+            <operation_date>2025-01-02</operation_date>
+            <operation_time>15:45:00</operation_time>
+            <operation_product>FOO-001-MLK</operation_product>
+            <operation_quantity>50</operation_quantity>
+            <operation_type>out</operation_type>
+        </operation>
+    </operation_register>
+</storage>

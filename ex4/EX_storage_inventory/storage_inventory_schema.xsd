@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+    <xs:element name="storage">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="storage_id">
+                    <xs:simpleType>
+                        <xs:restriction base="xs:string">
+                            <xs:pattern value="[A-Z]{3}[0-9]{4}"/>
+                        </xs:restriction>
+                    </xs:simpleType>
+                </xs:element>
+                <xs:element name="categories">
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element name="category" maxOccurs="unbounded">
+                                <xs:complexType>
+                                    <xs:sequence>
+                                        <xs:element name="category_name" type="xs:string"/>
+                                        <xs:element name="products">
+                                            <xs:complexType>
+                                                <xs:sequence>
+                                                    <xs:element name="product" maxOccurs="unbounded">
+                                                        <xs:complexType>
+                                                            <xs:sequence>
+                                                                <xs:element name="product_name"/>
+                                                                <xs:element name="product_code">
+                                                                    <xs:simpleType>
+                                                                        <xs:restriction base="xs:string">
+                                                                            <xs:pattern value="[A-Z]{3}-[0-9]{3}-[A-Z]{3}"/>
+                                                                        </xs:restriction>
+                                                                    </xs:simpleType>
+                                                                </xs:element>
+                                                                <xs:element name="description" type="xs:string"/>
+                                                                <xs:element name="price" type="xs:decimal"/>
+                                                                <xs:element name="quantity" type="xs:integer"/>
+                                                                <xs:element name="expiration" type="xs:date" minOccurs="0" />
+                                                            </xs:sequence>
+                                                        </xs:complexType>
+                                                    </xs:element>
+                                                </xs:sequence>
+                                            </xs:complexType>
+                                        </xs:element>
+                                    </xs:sequence>
+                                </xs:complexType>
+                            </xs:element>
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+                <xs:element name="operation_register">
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element name="operation" maxOccurs="unbounded">
+                                <xs:complexType>
+                                    <xs:sequence>
+                                        <xs:element name="operation_date" type="xs:date"/>
+                                        <xs:element name="operation_time" type="xs:time"/>
+                                        <xs:element name="operation_product" type="xs:string"/>
+                                        <xs:element name="operation_quantity" type="xs:integer"/>
+                                        <xs:element name="operation_type">
+                                            <xs:simpleType>
+                                                <xs:restriction base="xs:string">
+                                                    <xs:enumeration value="in"/>
+                                                    <xs:enumeration value="out"/>
+                                                </xs:restriction>
+                                            </xs:simpleType>
+                                        </xs:element>
+                                    </xs:sequence>
+                                </xs:complexType>
+                            </xs:element>
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+</xs:schema>
