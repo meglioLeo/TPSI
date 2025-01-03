@@ -95,12 +95,21 @@ def check_authentity(data, patient_fc):
                             is_valid = False
                             error_message = f"Operator code {operator_code} is not authorized to use machine {machine_serial}"
                             print(error_message)
-                            logging.error(error_message)
-                            
+                            logging.error(error_message)                 
     return is_valid
 
-def validate_exams():
-    pass
+def validate_exams(data, patient_fc):
+    for outcome in data["outcome"]:
+        if outcome["patient_code"] == patient_fc:
+            result = float(outcome["exams"]["exam_result"])
+            min_value = float(outcome["exams"]["exam_result_min"])
+            max_value = float(outcome["exams"]["exam_result_max"])
+            if result >= min_value and result <= max_value:
+                print(f"Exam result is within the range: {result} [{min_value}-{max_value}]")
+            else:
+                print(f"Exam result is not within the range: {result} [{min_value}-{max_value}]")
+                error_message = f"Exam result is not within the range: {result} [{min_value}-{max_value}]"
+                logging.error(error_message)
         
 def main():
     xmlfile = os.path.join(script_path, "medical_analysis.xml")
@@ -111,6 +120,8 @@ def main():
         return
     authentity = check_authentity(data, "VRDLGU65C01F205T")
     print(f"The analysis is valid: {authentity}")
+    if authentity:
+        validate_exams(data, "VRDLGU65C01F205T")
     
 if __name__ == "__main__":
     main()

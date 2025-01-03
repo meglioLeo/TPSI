@@ -12,11 +12,11 @@
             <operator_id>123456789</operator_id>
             <machine_serial_number>12345</machine_serial_number>
             <machine_serial_number>67890</machine_serial_number>
-            <exam_name>Analisi del sangue</exam_name>
+            <exam_name>Esame dei leucociti</exam_name>
             <exam_result>5.6</exam_result>
-            <exam_result_unit>mmol/L</exam_result_unit>
-            <exam_result_min>3.5</exam_result_min>
-            <exam_result_max>6.0</exam_result_max>
+            <exam_result_unit>migl/mmc</exam_result_unit>
+            <exam_result_min>4.8</exam_result_min>
+            <exam_result_max>10.8</exam_result_max>
         </exams>
     </outcome>
     <outcome>
@@ -31,11 +31,11 @@
             <exam_date>2025-01-03T14:00:00</exam_date>
             <operator_id>234567891</operator_id>
             <machine_serial_number>54321</machine_serial_number>
-            <exam_name>Esame delle urine</exam_name>
-            <exam_result>1.2</exam_result>
-            <exam_result_unit>mg/dL</exam_result_unit>
-            <exam_result_min>0.8</exam_result_min>
-            <exam_result_max>1.5</exam_result_max>
+            <exam_name>Esame dell'emoglobina</exam_name>
+            <exam_result>13.0</exam_result>
+            <exam_result_unit>g/100ml</exam_result_unit>
+            <exam_result_min>14.0</exam_result_min>
+            <exam_result_max>18.1</exam_result_max>
         </exams>
     </outcome>
     <outcome>
@@ -88,11 +88,11 @@
             <exam_date>2025-01-05T16:00:00</exam_date>
             <operator_id>567891234</operator_id>
             <machine_serial_number>44556</machine_serial_number>
-            <exam_name>ECG</exam_name>
-            <exam_result>72.0</exam_result>
-            <exam_result_unit>bpm</exam_result_unit>
-            <exam_result_min>60.0</exam_result_min>
-            <exam_result_max>100.0</exam_result_max>
+            <exam_name>Esame delle piastrine</exam_name>
+            <exam_result>226.0</exam_result>
+            <exam_result_unit>migl/mmc</exam_result_unit>
+            <exam_result_min>140.0</exam_result_min>
+            <exam_result_max>440.0</exam_result_max>
         </exams>
     </outcome>
 </analysis>
