@@ -3,6 +3,8 @@ import xmlschema #module for validating xml files
 import logging #module for logging
 import os #module for interacting with the operating system
 from datetime import datetime,timedelta #module for working with dates and times
+import xml.etree.ElementTree as ET #module for parsing xml files
+
 #get the path of the script
 global script_path
 script_path = os.path.dirname(os.path.abspath(__file__))
@@ -69,11 +71,31 @@ def calculate_available_percentage(data, selected_month, selcted_year):
     occupancy_percentage = reservation_days/available_rooms_monthly*100 
     print(f"The occupancy percentage for {selected_month}/{selcted_year} is: {occupancy_percentage}%")
         
-    
-        
 class reservation_in_xml:
     def __init__(self):
         self.reservations = []
+        
+    def get_reservations(self, data):
+        for reservation in data["reservations"]["reservation"]:
+            reservation_details = { "customer_name": reservation["customer_name"],
+                                    "customer_surname": reservation["customer_surname"], 
+                                    "start_date": reservation["start_date"], 
+                                    "end_date": reservation["end_date"], 
+                                    "room_number": reservation["room_number"], 
+                                    "customer_email": reservation["customer_email"], 
+                                    "total_cost": reservation["total_cost"]}
+            
+            self.reservations.append(reservation_details)
+        
+    def resume_to_xml(self, xml_destination):
+        root = ET.Element("reservation_resume")
+        for reservation in self.reservations:
+            reservation_element = ET.SubElement(root, "reservation")
+            for key, value in reservation.items():
+                ET.SubElement(reservation_element, key).text = str(value)
+        tree = ET.ElementTree(root)
+        with open(xml_destination, "wb") as f:
+            tree.write(f)
 
 def main():
     xml_file = os.path.join(script_path, "hotel_reservation.xml")
@@ -82,7 +104,19 @@ def main():
     data = get_data_from_xml(xml_file,xsd_file)
     if data is None:
         return
-    calculate_available_percentage(data, 3, 2025)  #data, month, year
+    
+    print("select a month and year to calculate the occupancy percentage")
+    selected_month = int(input("Month: "))
+    while selected_month < 1 or selected_month > 12:
+        print("Invalid month")
+        selected_month = int(input("Month: "))
+    selected_year = int(input("Year: "))
+    
+    calculate_available_percentage(data, selected_month, selected_year)  #data, month, year
+    
+    reservation_resume = reservation_in_xml()
+    reservation_resume.get_reservations(data)
+    reservation_resume.resume_to_xml(os.path.join(script_path, "reservation_resume.xml"))
         
 if __name__ == "__main__":
     main()
