@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+
+    <xs:element name="car_rent">
+        <xs:complexType>
+            <xs:sequence>
+
+                <xs:element name="car" maxOccurs="unbounded">
+                    <xs:complexType>
+                        <xs:sequence>
+
+                            <xs:element name="class">
+                                <xs:simpleType>
+                                    <xs:restriction base="xs:string">
+                                        <xs:enumeration value="A"/>
+                                        <xs:enumeration value="B"/>
+                                        <xs:enumeration value="C"/>
+                                        <xs:enumeration value="D"/>
+                                        <xs:enumeration value="E"/>
+                                    </xs:restriction>
+                                </xs:simpleType>
+                            </xs:element>
+
+                            <xs:element name="brand" type="xs:string"/>
+
+                            <xs:element name="model" type="xs:string"/>
+
+                            <xs:element name="engine_size">
+                                <xs:simpleType>
+                                    <xs:restriction base="xs:positiveInteger">
+                                        <xs:minInclusive value="700"/>
+                                        <xs:maxInclusive value="6000"/>
+                                    </xs:restriction>
+                                </xs:simpleType>
+                            </xs:element>
+
+                            <xs:element name="power">
+                                <xs:simpleType>
+                                    <xs:restriction base="xs:positiveInteger">
+                                        <xs:minInclusive value="30"/>
+                                        <xs:maxInclusive value="500"/>
+                                    </xs:restriction>
+                                </xs:simpleType>
+                            </xs:element>
+
+                            <xs:element name="fueling">
+                                <xs:simpleType>
+                                    <xs:restriction base="xs:string">
+                                        <xs:enumeration value="gasoline"/>
+                                        <xs:enumeration value="LPG"/>
+                                        <xs:enumeration value="methane"/>
+                                        <xs:enumeration value="diesel"/>
+                                        <xs:enumeration value="electric"/>
+                                        <xs:enumeration value="hybrid"/>
+                                    </xs:restriction>
+                                </xs:simpleType>
+                            </xs:element>
+
+                            <xs:element name="passenger_amount">
+                                <xs:simpleType>
+                                    <xs:restriction base="xs:positiveInteger">
+                                        <xs:minInclusive value="2"/>
+                                        <xs:maxInclusive value="7"/>
+                                    </xs:restriction>
+                                </xs:simpleType>
+                            </xs:element>
+
+                            <xs:element name="trunk_volume">
+                                <xs:simpleType>
+                                    <xs:restriction base="xs:positiveInteger">
+                                        <xs:minInclusive value="100"/>
+                                        <xs:maxInclusive value="1000"/>
+                                    </xs:restriction>
+                                </xs:simpleType>
+                            </xs:element>
+
+                            <xs:element name="agencies" maxOccurs="unbounded" minOccurs="0">
+                                <xs:complexType>
+                                    <xs:attribute name="name" type="xs:string"/>
+                                    <xs:attribute name="city" type="xs:string"/>
+                                </xs:complexType>   
+                            </xs:element>
+                        
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+</xs:schema>

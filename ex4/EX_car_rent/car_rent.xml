@@ -1,0 +1,62 @@
+<car_rent>
+    <car>
+        <class>E</class>
+        <brand>Mercedes</brand>
+        <model>GLC</model>
+        <engine_size>2200</engine_size>
+        <power>170</power>
+        <fueling>diesel</fueling>
+        <passenger_amount>5</passenger_amount>
+        <trunk_volume>550</trunk_volume>
+        <agencies name="DriveEasy" city="Rome"/>
+        <agencies name="CarVoyage" city="Paris"/>
+    </car>
+    <car>
+        <class>B</class>
+        <brand>Toyota</brand>
+        <model>Yaris</model>
+        <engine_size>1300</engine_size>
+        <power>100</power>
+        <fueling>gasoline</fueling>
+        <passenger_amount>5</passenger_amount>
+        <trunk_volume>286</trunk_volume>
+        <agencies name="RoadFlex" city="Berlin"/>
+        <agencies name="TourWheels" city="Bruxelles"/>
+        <agencies name="AutoGo" city="Amsterdam"/>
+    </car>
+    <car>
+        <class>C</class>
+        <brand>Opel</brand>
+        <model>Astra</model>
+        <engine_size>1600</engine_size>
+        <power>120</power>
+        <fueling>hybrid</fueling>
+        <passenger_amount>5</passenger_amount>
+        <trunk_volume>370</trunk_volume>
+        <agencies name="CarVoyage" city="Paris"/>
+    </car>
+    <car>
+        <class>A</class>
+        <brand>Renault</brand>
+        <model>Clio</model>
+        <engine_size>1200</engine_size>
+        <power>75</power>
+        <fueling>hybrid</fueling>
+        <passenger_amount>5</passenger_amount>
+        <trunk_volume>300</trunk_volume>
+        <agencies name="KeyDrive" city="Madrid"/>
+        <agencies name="KeyDrive" city="Lisbon"/>
+    </car>
+    <car>
+        <class>D</class>
+        <brand>BMW</brand>
+        <model>320</model>
+        <engine_size>2000</engine_size>
+        <power>150</power>
+        <fueling>diesel</fueling>
+        <passenger_amount>5</passenger_amount>
+        <trunk_volume>480</trunk_volume>
+        <agencies name="DriveEasy" city="Rome"/>
+        <agencies name="RentWay" city="London"/>
+    </car>
+</car_rent>

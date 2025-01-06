@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+    <xs:element name="analysis">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="outcome" maxOccurs="unbounded">
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element name="patient_name" type="xs:string"/>
+                            <xs:element name="patient_surname" type="xs:string"/>
+                            <xs:element name="patient_code" type="xs:string"/>
+                            <xs:element name="patient_gender" type="xs:string"/>
+                            <xs:element name="patient_age" type="xs:integer"/>
+                            <xs:element name="date" type="xs:dateTime"/>
+                            <xs:element name="place" type="xs:string"/>
+                            <xs:element name="exams">
+                                <xs:complexType>
+                                    <xs:sequence>
+                                        <xs:element name="exam_date" type="xs:dateTime"/>
+                                        <xs:element name="operator_id" type="xs:integer"/>
+                                        <xs:element name="machine_serial_number" type="xs:integer" minOccurs="0" maxOccurs="5"/>
+                                        <xs:element name="exam_name" type="xs:string"/>
+                                        <xs:element name="exam_result" type="xs:decimal"/>
+                                        <xs:element name="exam_result_unit" type="xs:string"/>
+                                        <xs:element name="exam_result_min" type="xs:decimal"/>
+                                        <xs:element name="exam_result_max" type="xs:decimal"/>
+                                    </xs:sequence>
+                                </xs:complexType>
+                            </xs:element>
+                        </xs:sequence>
+                    </xs:complexType>        
+                </xs:element>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+</xs:schema>
