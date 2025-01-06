@@ -78,8 +78,8 @@ class operation_in_xml:
                     "operation_time": operation["operation_time"],
                     "product_involved": operation["operation_product"],
                     "quantity": operation["operation_quantity"],
-                    "operation_type": operation["operation_type"]
-                }
+                    "operation_type": operation["operation_type"]}  #dictionary with operation details
+                
                 self.operations.append(operation_details)
         #pprint.pprint(self.operations, indent=2, width=100)
     
@@ -103,7 +103,7 @@ def main():
     #calculate_total_value(data)
     #calculate_stock(data)
     resume = operation_in_xml()
-    resume.get_operations(data, datetime(2025, 1, 1), datetime(2025, 1, 2))
+    resume.get_operations(data, datetime(2025, 1, 1), datetime(2025, 1, 2))  #datetime(year, month, day)
     resume.to_xml(os.path.join(script_path, "operation_resume.xml"))
     
 if __name__ == "__main__":

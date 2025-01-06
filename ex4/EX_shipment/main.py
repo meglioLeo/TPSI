@@ -89,8 +89,6 @@ class handle_shipment:
         
         except IndexError:
             print(f"Shipment index {index} is out of range")
-        except ValueError as e:
-            print(f"Date format error: {e}")
         except Exception as e:
             print(f"An unexpected error occurred: {e}")
         
@@ -102,8 +100,8 @@ class time_in_xml:
         for shipment in shipments_arr:
             shipment_time = []
             for i in range(len(shipment) - 1):  # Iterate over indices, stopping at the second-last element
-                date1 = shipment[i].date  # Access current element's date
-                date2 = shipment[i + 1].date  # Access next element's date
+                date1 = shipment[i].date  # Access current shipment's date
+                date2 = shipment[i + 1].date  # Access next shipment's date
                 
                 # Convert string dates to datetime objects
                 date1 = datetime.fromisoformat(date1)

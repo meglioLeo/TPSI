@@ -48,9 +48,9 @@ def calculate_available_percentage(data, selected_month, selcted_year):
     """
     room_count = len(data["available_rooms"]["room"])
     if room_count == 0:
-        error_message = "No rooms available"
+        error_message = "No rooms available in this hotel"
         logging.error(error_message)
-        print("No rooms available")
+        print(error_message)
         
     first_day_of_month = datetime(selcted_year, selected_month, 1)
     last_day_of_month = (first_day_of_month+timedelta(days=32)).replace(day=1)-timedelta(days=1)
@@ -66,7 +66,7 @@ def calculate_available_percentage(data, selected_month, selcted_year):
         or reservation_start < first_day_of_month and reservation_end > last_day_of_month:
             overlap_start = max(reservation_start, first_day_of_month)
             overlap_end = min(reservation_end, last_day_of_month)          
-            reservation_days += (overlap_end-overlap_start).days + 1
+            reservation_days += (overlap_end-overlap_start).days + 1  #add 1 to include the last day
     
     occupancy_percentage = reservation_days/available_rooms_monthly*100 
     print(f"The occupancy percentage for {selected_month}/{selcted_year} is: {occupancy_percentage}%")
@@ -88,14 +88,14 @@ class reservation_in_xml:
             self.reservations.append(reservation_details)
         
     def resume_to_xml(self, xml_destination):
-        root = ET.Element("reservation_resume")
+        root = ET.Element("reservation_resume")  #create the root element
         for reservation in self.reservations:
-            reservation_element = ET.SubElement(root, "reservation")
+            reservation_element = ET.SubElement(root, "reservation")  #create a child element
             for key, value in reservation.items():
-                ET.SubElement(reservation_element, key).text = str(value)
-        tree = ET.ElementTree(root)
+                ET.SubElement(reservation_element, key).text = str(value)  #create a subelement for each key-value pair
+        tree = ET.ElementTree(root)  
         with open(xml_destination, "wb") as f:
-            tree.write(f)
+            tree.write(f)  #write the xml file
 
 def main():
     xml_file = os.path.join(script_path, "hotel_reservation.xml")

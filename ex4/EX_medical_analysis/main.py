@@ -13,7 +13,7 @@ as I did  all the checks in the python script.
 global script_path
 script_path = os.path.dirname(os.path.abspath(__file__))
 
-global authorised_operators
+global authorised_operators  #dictionary with authorised operators and the machines they can use
 authorised_operators = {"123456789": [12345, 67890], 
                         "234567891": [54321], 
                         "345678912": [98765, 44556], 

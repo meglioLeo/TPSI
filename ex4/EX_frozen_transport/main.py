@@ -8,7 +8,7 @@ from datetime import datetime #module for handling dates
 global script_path
 script_path = os.path.dirname(os.path.abspath(__file__))
 
-global threshold
+global threshold  #global variable for the temperature threshold
 threshold = -30.0
 
 def setup_logger():
@@ -27,20 +27,6 @@ def log_errors(xml_file, xsd_file):
     for error in schema.iter_errors(xml_file): #iter_errors to avoid raising an exception -> the program doesn't stop
         error_message = f"File: {xml_file}, Error: {error}\n\n\n"
         logging.error(error_message)    #log the errors without stopping the program
-        
-def pprint_valid_data(xml_file,xsd_file):
-    try:
-        schema = xmlschema.XMLSchema(xsd_file)
-        if not schema.is_valid(xml_file):
-            log_errors(xml_file,xsd_file) #log validation errors
-            return
-        data = schema.to_dict(xml_file)
-        print(f"\nValid data:")
-        pprint.pprint(data, indent=2, width=100) #pretty print the entire data structure
-    
-    except Exception as e:
-        error_message = f"An unexpected error occurred while processing {xml_file}: {e}"
-        logging.error(error_message)
         
 class measure:
     def __init__(self, temperature, date):
@@ -63,7 +49,6 @@ def main():
     setup_logger()
     xml_file = os.path.join(script_path, "frozen_transport.xml")
     xsd_file = os.path.join(script_path, "frozen_transport_schema.xsd")
-    #pprint_valid_data(xml_file, xsd_file)
     is_over_threshold = False
     
     try:

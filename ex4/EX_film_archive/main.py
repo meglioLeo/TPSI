@@ -39,7 +39,6 @@ def get_data_from_xml(xml_file,xsd_file):
         logging.error(error_message)
         
 def get_best_film(data):
-    best_films = []
     for film in data["film"]:
         #pprint.pprint(film, indent=2, width=100)
 
@@ -80,24 +79,3 @@ def main():
     
 if __name__ == "__main__":
     main()
-    
-    
-    
-"""
-            #pprint.pprint(film["ratings"], indent=2, width=100)
-            pprint.pprint(pippo, indent=2, width=100)
-            review_value = int(rating["value"])
-            avg += review_value
-            #print(f"Rating value: {rating["value"]}")
-            #pprint.pprint(f"pippo: {film['ratings']}", indent=2, width=100)
-            counter += 1
-        avg = avg/counter
-        if avg > 8:
-            for director in film["directors"]:
-                director_name = director["name"] + " " + director["surname"]
-                film_directors.append(director_name)
-            for actor in film["actors"]:
-                actor_name = actor["name"] + " " + actor["surname"]
-                film_actors.append(actor_name)
-            print(f"Film: {film['title']}, \nDirectors: {film_directors}, \nActors: {film_actors}, \nAverage rating: {avg}")
-"""

@@ -61,18 +61,14 @@ def find_hybrid_agencies(xml_file,xsd_file,Class):   #find the agencies that off
 
 def main():
     """
-    To launch the script use the command prompt
+    To launch the script use the command prompt, as it may cause problems with the python interpreter.
     """
     parser = argparse.ArgumentParser()
 
-    parser.add_argument("file_xml", type=str)  # Argomento posizionale
-    parser.add_argument("Class", type=str)  # Argomento posizionale
+    parser.add_argument("file_xml", type=str) 
+    parser.add_argument("Class", type=str)  
 
-    # Analizza i parametri
-    args = parser.parse_args()
-
-    # Usa i parametri
-    #print(f"Ciao {args.nome}, hai {args.eta} anni!")
+    args = parser.parse_args()  # Parse arguments
 
     xml_file = args.file_xml
     xsd_file = os.path.join(script_path, "car_rent_schema.xsd")

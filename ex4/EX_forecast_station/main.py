@@ -50,14 +50,13 @@ def calculate_average(data, node):
 
 def main():
     """
-    To launch the script use the command prompt
+    To launch the script use the command prompt, as it may cause problems with the python interpreter.
     """
     parser = argparse.ArgumentParser()
 
-    parser.add_argument("file_xml", type=str)  # Argomento posizionale
+    parser.add_argument("file_xml", type=str) 
 
-    # Analizza i parametri
-    args = parser.parse_args()
+    args = parser.parse_args()     # Parse the arguments
 
     xml_file = args.file_xml
     xsd_file = os.path.join(script_path, "forecast_station_schema.xsd")
