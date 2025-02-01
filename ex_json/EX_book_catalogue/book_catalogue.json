@@ -1,0 +1,49 @@
+{
+    "bookCatalogue":[
+        {
+            "title": "To Kill a Mockingbird",
+            "authors": ["Harper Lee"],
+            "genre": "Fiction",
+            "ISBN": "978-01-23-45678-9",
+            "publicationYear": 1960,
+            "numberOfPages": 281,
+            "language": "en"
+        },
+        {
+            "title": "Il Nome della Rosa",
+            "authors": ["Umberto Eco"],
+            "genre": "Historical Fiction",
+            "ISBN": "979-12-34-56789-3",
+            "publicationYear": 1980,
+            "numberOfPages": 512,
+            "language": "it"
+        },
+        {
+            "title": "Le Petit Prince",
+            "authors": ["Antoine de Saint-Exupéry"],
+            "genre": "Children's Fiction",
+            "ISBN": "978-65-43-21098-6",
+            "publicationYear": 1943,
+            "numberOfPages": 96,
+            "language": "fr"
+        },
+        {
+            "title": "Don Quixote",
+            "authors": ["Miguel de Cervantes"],
+            "genre": "Classic",
+            "ISBN": "979-88-77-66543-2",
+            "publicationYear": 1605,
+            "numberOfPages": 1072,
+            "language": "es"
+        },
+        {
+            "title": "Die Verwandlung",
+            "authors": ["Franz Kafka"],
+            "genre": "Novella",
+            "ISBN": "978-3-596-90454-6",
+            "publicationYear": 1915,
+            "numberOfPages": 74,
+            "language": "de"
+        }
+    ]
+}

@@ -1,0 +1,25 @@
+{
+    "package":[
+        {
+            "place":{
+                "city": "Rome",
+                "state": "Italy"
+            },
+            "registrationDate": "2020-01-01T00:00:00Z"
+        },
+        {
+            "place":{
+                "city": "Paris",
+                "state": "France"
+            },
+            "registrationDate": "2020-01-02T00:00:00Z"
+        },
+        {
+            "place":{
+                "city": "Berlin",
+                "state": "Germany"
+            },
+            "registrationDate": "2020-01-03T00:00:00Z"
+        }
+    ]
+}    
