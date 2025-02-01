@@ -6,7 +6,7 @@
                 "patientSurname": "Rossi",
                 "samplingDate": "2025-02-01T09:00:00Z",
                 "analysisType": "Glicemia",
-                "result": 95,
+                "result": 60,
                 "unitOfMeasure": "mg/dL",
                 "resultRange": {
                     "min": 70,
@@ -40,6 +40,6 @@
                 },
                 "outcome": ""
             }
-        ]        
+        ]
     ]
 }

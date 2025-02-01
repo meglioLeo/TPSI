@@ -19,7 +19,7 @@
                     },
                     "required": ["min", "max"]
                 },
-                "outcome":{"type":"string", "minLength": 1, "maxLength": 255}
+                "outcome":{"type":"string", "enum":["Normmal", "High", "Low"] }
             },
             "required": ["patientName", "patientSurname", "samplingDate", "analysisType", "result", "unitOfMeasure", "resultRange"]
         }
