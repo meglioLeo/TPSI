@@ -2,21 +2,15 @@
     "$schema": "http://json-schema.org/draft-07/schema#",
     "type": "object",
     "properties": {
-        "package":{
+        "place":{
             "type": "object",
-            "properties": {
-                "place":{
-                    "type": "object",
-                    "properties":{
-                        "city": { "type": "string", "minLength": 1, "maxLength": 255 },
-                        "state": { "type": "string", "minLength": 1, "maxLength": 255 }
-                    },
-                    "required": ["city", "state"]
-                },
-                "registrationDate":{ "type": "string", "format": "date-time" }
+            "properties":{
+                "city": { "type": "string", "minLength": 1, "maxLength": 255 },
+                "state": { "type": "string", "minLength": 1, "maxLength": 255 }
             },
-            "required": ["place", "registrationDate"]
-        }
+            "required": ["city", "state"]
+        },
+        "registrationDate":{ "type": "string", "format": "date-time" }
     },
-    "required": ["package"]
+    "required": ["place", "registrationDate"]
 }
