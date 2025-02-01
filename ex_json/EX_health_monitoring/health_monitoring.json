@@ -1,0 +1,29 @@
+{
+    "measuraments": [
+        {
+            "measuramentDate": "2025-02-01T08:30:00Z",
+            "measurementType": "Pressione sanguigna",
+            "result": 120.80,
+            "notes": "Misurazione effettuata al mattino, prima della colazione. La pressione è nella norma, ma si consiglia di monitorare periodicamente."
+        },
+        {
+            "measuramentDate": "2025-02-01T14:30:00Z",
+            "measurementType": "Battito cardiaco",
+            "result": 72,
+            "notes": "Misurato in stato di riposo, nel pomeriggio. Il battito risulta regolare e nella norma."
+        },
+        {
+            "measuramentDate": "2025-02-01T19:45:00Z",
+            "measurementType": "Livello di glucosio",
+            "result": 98,
+            "notes": "Misurazione postprandiale, due ore dopo cena. Il livello di glucosio è nella norma."
+        },
+        {
+            "measuramentDate": "2025-02-01T23:00:00Z",
+            "measurementType": "Pressione sanguigna",
+            "result": 118.76,
+            "notes": "Misurazione effettuata prima di andare a letto. Buona pressione, non necessitano interventi immediati."
+        }
+        
+    ]
+}
