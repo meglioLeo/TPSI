@@ -1,0 +1,17 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "type": "object",
+    "properties":{
+        "measuraments":{
+            "type": "array",
+            "properties":{
+                "measuramentDate": {"type": "string", "format": "date-time"},
+                "measurementType": {"type": "string", "minLength": 1, "maxLength": 255},
+                "result": {"type": "number", "minimum": 0},
+                "notes": {"type": "string", "minLength": 1, "maxLength": 255}
+            },
+            "required": ["measuramentDate", "measurementType", "result"]
+        }
+    },
+    "required": ["measuraments"]
+}
