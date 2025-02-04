@@ -1,45 +1,43 @@
 {
     "medicalExams": [
-        [
-            {
-                "patientName": "Mario",
-                "patientSurname": "Rossi",
-                "samplingDate": "2025-02-01T09:00:00Z",
-                "analysisType": "Glicemia",
-                "result": 60,
-                "unitOfMeasure": "mg/dL",
-                "resultRange": {
-                    "min": 70,
-                    "max": 100
-                },
-                "outcome": ""
+        {
+            "patientName": "Mario",
+            "patientSurname": "Rossi",
+            "samplingDate": "2025-02-01T09:00:00Z",
+            "analysisType": "Glicemia",
+            "result": 60,
+            "unitOfMeasure": "mg/dL",
+            "resultRange": {
+                "min": 70,
+                "max": 100
             },
-            {
-                "patientName": "Lucia",
-                "patientSurname": "Bianchi",
-                "samplingDate": "2025-02-01T10:30:00Z",
-                "analysisType": "Colesterolo",
-                "result": 210,
-                "unitOfMeasure": "mg/dL",
-                "resultRange": {
-                    "min": 140,
-                    "max": 200
-                },
-                "outcome": ""
+            "outcome": ""
+        },
+        {
+            "patientName": "Lucia",
+            "patientSurname": "Bianchi",
+            "samplingDate": "2025-02-01T10:30:00Z",
+            "analysisType": "Colesterolo",
+            "result": 210,
+            "unitOfMeasure": "mg/dL",
+            "resultRange": {
+                "min": 140,
+                "max": 200
             },
-            {
-                "patientName": "Giovanni",
-                "patientSurname": "Verdi",
-                "samplingDate": "2025-02-01T14:45:00Z",
-                "analysisType": "Creatinina",
-                "result": 1.1,
-                "unitOfMeasure": "mg/dL",
-                "resultRange": {
-                    "min": 0.6,
-                    "max": 1.2
-                },
-                "outcome": ""
-            }
-        ]
+            "outcome": ""
+        },
+        {
+            "patientName": "Giovanni",
+            "patientSurname": "Verdi",
+            "samplingDate": "2025-02-01T14:45:00Z",
+            "analysisType": "Creatinina",
+            "result": 1.1,
+            "unitOfMeasure": "mg/dL",
+            "resultRange": {
+                "min": 0.6,
+                "max": 1.2
+            },
+            "outcome": ""
+        }
     ]
 }

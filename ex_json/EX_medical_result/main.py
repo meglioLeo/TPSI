@@ -2,6 +2,7 @@ import json
 import os
 from jsonschema import validate, ValidationError
 
+#this class represents a single medical exam, not the whole JSON data
 class MedicalResult:
     def __init__(self, patientName, patientSurname, samplingDate, analysisType, result, unitOfMeasure, resultRange, outcome):
         self.patientName = patientName
@@ -13,6 +14,7 @@ class MedicalResult:
         self.resultRange = resultRange
         self.outcome = outcome
         
+    #this method is used to convert the object to a dictionary
     def to_dict(self):
         return {
             "patientName": self.patientName,
@@ -25,6 +27,7 @@ class MedicalResult:
             "outcome": self.outcome
         }
         
+    #this method is used to create an object from a dictionary
     @classmethod
     def from_dict(cls, data):
         return cls(
@@ -38,23 +41,28 @@ class MedicalResult:
             outcome=data["outcome"]
         )
         
+    #this method is used to update the outcome of the exam after the calculation
     def update_outcome(self, outcome):
         self.outcome = outcome
 
 def validate_result (json_file_path, schema_file_path):
+    #load the schema from the file
     with open(schema_file_path, "r") as schema_file:
         schema = json.load(schema_file)
         
+    #load the JSON data file
     with open(json_file_path, "r") as json_file:
         data = json.load(json_file)
         
     errors = []
     
+    #validate the whole JSON data
     try:
         validate(instance=data, schema=schema)
     except ValidationError as e:
         errors.append(f"Error: {e.message}")
         
+    #if there are errors, write them to a log file
     if errors:
         error_log_file = json_file_path.replace(".json", "_errors.log")
         with open(error_log_file, "w") as err_file:
@@ -98,15 +106,12 @@ def update_json_file(json_file_path, medical_results):
     
     updated_exams_group = [exam.to_dict() for exam in medical_results]
     updated_data = {
-        "medicalExams": [
-            updated_exams_group
-        ]
+        "medicalExams": updated_exams_group
     }
     
     with open(json_file_path, "w") as json_file:
-        json.dump(updated_data, json_file, indent=4)
+        json.dump(updated_data, json_file, indent=4)  #delete the old data and write the new one
     print(f"Il file {json_file_path} è stato aggiornato.")
-        
         
         
 if __name__ == "__main__":
