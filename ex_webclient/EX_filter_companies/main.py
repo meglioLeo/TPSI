@@ -1,5 +1,6 @@
 import requests
 import json
+import pprint
 
 url = "https://fake-json-api.mock.beeceptor.com/companies"
 headers = {"Accept": "application/json"}
@@ -15,7 +16,7 @@ if response.status_code == 200:
         if company["employeeCount"] > 2000:
             filtered_companies.append(company)
             
-    print(filtered_companies)
+    pprint.pprint(filtered_companies)
     
 else:
     print(f"Error: {response.status_code}")
