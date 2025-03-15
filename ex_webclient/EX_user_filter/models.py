@@ -28,3 +28,5 @@ class UserModel:
             photo = data.get("photo")
         )
         
+    def __repr__ (self):
+        return f"UserModel(id = {self.id}, name = {self.name}, state = {self.state})"
