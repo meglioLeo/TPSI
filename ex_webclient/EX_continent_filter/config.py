@@ -1,0 +1,1 @@
+API_URL = "https://dummy-json.mock.beeceptor.com/continents"
