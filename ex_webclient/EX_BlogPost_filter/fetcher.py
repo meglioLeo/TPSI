@@ -6,7 +6,7 @@ class PostFetcher:
     def __init__(self, url=API_URL):
         self.url = url
 
-    def fetch_posts():
+    def fetch_posts(self):
         try:
             response = requests.get(API_URL)
             response.raise_for_status()
