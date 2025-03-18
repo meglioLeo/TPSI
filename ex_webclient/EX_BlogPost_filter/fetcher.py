@@ -8,7 +8,7 @@ class PostFetcher:
 
     def fetch_posts(self):
         try:
-            response = requests.get(API_URL)
+            response = requests.get(self.url)
             response.raise_for_status()
             posts_json = response.json()
             return [PostModel.from_json(post) for post in posts_json]

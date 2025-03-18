@@ -2,7 +2,7 @@ from fetcher import PostFetcher
 from filter import PostFilter
 
 def main():
-    fetcher = PostFetcher
+    fetcher = PostFetcher()
     posts = fetcher.fetch_posts()
     if not posts:
         print("No posts found or API request failed.")

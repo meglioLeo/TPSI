@@ -7,7 +7,7 @@ class PostModel:
         self.link = link
         self.comment_count = comment_count
     
-    @staticmethod
+    @classmethod
     def from_json(cls, data):
         return cls(
             userId = data.get("userId"),
