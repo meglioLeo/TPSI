@@ -2,7 +2,7 @@ import requests
 from config import API_URL
 from models import CompanyModel
 
-class CompnayFetcher:
+class CompanyFetcher:
     def __init__(self, url = API_URL):
         self.url = url
         
