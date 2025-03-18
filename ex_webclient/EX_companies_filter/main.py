@@ -1,22 +1,16 @@
-import requests
-import json
-import pprint
+from filter import CompanyFilter
+from fetcher import CompanyFetcher
 
-url = "https://fake-json-api.mock.beeceptor.com/companies"
-headers = {"Accept": "application/json"}
-
-response = requests.get(url, headers=headers)
-
-if response.status_code == 200:
-    companies = response.json()
-    
-    filtered_companies = []
-    
-    for company in companies:
-        if company["employeeCount"] > 2000:
-            filtered_companies.append(company)
-            
-    pprint.pprint(filtered_companies)
-    
-else:
-    print(f"Error: {response.status_code}")
+def main():
+    fetcher = CompanyFetcher()
+    companies = fetcher.fetch_companies()
+    if not companies:
+        print("No companies found or API request failed.")
+        return
+    filtered_companies = CompanyFilter.filter_by_employee_count(companies)
+    print("Companies with more than 2000 employees:")
+    for company in filtered_companies:
+        print(f"- {company.name} ({company.employeeCount})")
+        
+if __name__ == "__main__":
+    main()
