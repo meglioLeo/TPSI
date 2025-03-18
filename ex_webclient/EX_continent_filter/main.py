@@ -1,28 +1,14 @@
-import requests
-import json
-import pprint
+from fetcher import ContinentFetcher
+from filter import ContinentFilter
 
-url = "https://dummy-json.mock.beeceptor.com/continents"
-headers = {"Accept" : "application/json"}
-
-response = requests.get(url, headers=headers)
-
-if response.status_code == 200:
+def main():
+    fetcher = ContinentFetcher()
+    continents = fetcher.fetch_continents()
+    if not continents:
+        print("No continents found or API request failed.")
+        return
+    most_populated_continent = ContinentFilter.find_most_populated_continent(continents)
+    print(f"Most populated continent: {most_populated_continent}")
     
-    continents = json.loads(response.text)
-    
-    #pprint.pprint(continents)
-    #print("-----------------------------")
-    
-    max_population_continent = None
-    
-    for continent in continents:
-        if max_population_continent == None:
-            max_population_continent = continent
-        elif continent["population"] > max_population_continent["population"]:
-            max_population_continent = continent
-        
-    pprint.pprint(max_population_continent)
-    
-else:
-    print("Error: ", response.status_code)
+if __name__ == "__main__":
+    main()
