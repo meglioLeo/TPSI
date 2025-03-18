@@ -1,10 +1,10 @@
-from config import DEFAULT_STATE_FILTER
+from config import DEFAULT_EMPLOYEE_COUNT_FILTER
 
 class CompanyFilter:
     @staticmethod
-    def filter_by_employee_count(companies, state=DEFAULT_STATE_FILTER):
+    def filter_by_employee_count(companies, state=DEFAULT_EMPLOYEE_COUNT_FILTER):
         filtered_companies = []
         for company in companies:
-            if company.employeeCount > DEFAULT_STATE_FILTER:
+            if company.employeeCount > DEFAULT_EMPLOYEE_COUNT_FILTER:
                 filtered_companies.append(company)
         return filtered_companies
