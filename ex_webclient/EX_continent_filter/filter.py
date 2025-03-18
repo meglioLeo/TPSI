@@ -1,10 +1,9 @@
 class ContinentFilter:
+    
     @staticmethod
     def find_most_populated_continent(continents):
-        max_population = 0
-        most_populated_code = ""
+        most_populated_continent = None
         for continent in continents:
-            if continent.population > max_population:
-                max_population = continent.population
-                most_populated_code = continent.code
-        return (continent for continent in continents if continent.code == most_populated_code)
+            if most_populated_continent is None or continent.population > most_populated_continent.population:
+                most_populated_continent = continent
+        return most_populated_continent
