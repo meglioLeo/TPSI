@@ -1,7 +1,7 @@
 from fetcher import TransactionFetcher
 from filter import count_enter_Livorno
 from filter import amount_spent_in_year
-#from filter import total_hour
+#from filter import total_time
 from datetime import datetime
 
 def main():
