@@ -16,13 +16,14 @@ class TransactionFetcher:
         transactions = []
 
         for transaction in root.findall("transazione"):
-            transactions.append(Transaction(
-                code = int(transaction.find("codice").text)),
+                code = int(transaction.find("codice").text),
                 enter_place = transaction.find("ingresso").text,
                 enter_hour = datetime.fromisoformat(transaction.find("ora_ingresso").text),
                 exit_place = transaction.find("uscita").text,
                 exit_hour = datetime.fromisoformat(transaction.find("ora_uscita").text),
                 amount = int(transaction.find("importo").text)
-            )
+                
+                fetched_transaction = TransactionModel(code, enter_place, enter_hour, exit_place, exit_hour, amount)
+                transactions.append(fetched_transaction)
 
         return transactions
