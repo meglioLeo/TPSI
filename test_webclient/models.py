@@ -1,4 +1,4 @@
-class PaymentModel:
+class TransactionModel:
 
     def __init__(self, code, enter_place, enter_hour, exit_place, exit_hour, amount):
         self.code = code,
@@ -20,4 +20,4 @@ class PaymentModel:
         )
 
     def __repr__(self):
-        return f"PaymentModel(code={self.code}, enter_place='{self.enter_place}', enter_hour='{self.enter_hour}', exit_hour='{self.exit_hour}', amount={self.amount})"
+        return f"TransactionModel(code={self.code}, enter_place='{self.enter_place}', enter_hour='{self.enter_hour}', exit_hour='{self.exit_hour}', amount={self.amount})"
