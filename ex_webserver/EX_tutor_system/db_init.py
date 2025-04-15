@@ -1,4 +1,4 @@
-from app import app,db  #TODO fix impotr app
+from app import app,db
 from models import Vehicle, Portal
 
 with app.app_context():
