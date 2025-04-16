@@ -32,7 +32,7 @@ def register_entry():
         return jsonify({"error": "Portal not found"}), 404
     
     # Register vehicle entry
-    timestamp = datetime.utcnow()
+    timestamp = datetime.now()
     new_vehicle = Vehicle(
     license_plate=license_plate,
 
@@ -60,7 +60,7 @@ def register_exit():
     if not vehicle:
         return jsonify({"error": "Vehicle entry not found"}), 404
     # Update exit timestamp
-    vehicle.timestamp_out = datetime.utcnow()
+    vehicle.timestamp_out = datetime.now()
     db.session.commit()
     return jsonify({"message": "Vehicle exit updated successfully", "timestamp_out":
     vehicle.timestamp_out.isoformat()}), 200
@@ -80,9 +80,9 @@ def get_portals(license_plate):
     "timestamp_out": v.timestamp_out.isoformat() if v.timestamp_out else None
     })
     return jsonify(result), 200
+
 # Route for deleting records of emergency/law enforcement vehicles
 @app.route('/delete_record/<license_plate>', methods=['DELETE'])
-
 def delete_record(license_plate):
     """Deletes the record for emergency or law enforcement vehicles"""
     if not is_emergency_or_law_enforcement(license_plate):
