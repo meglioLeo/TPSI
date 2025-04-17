@@ -94,6 +94,11 @@ def delete_record(license_plate):
     db.session.commit()
     return jsonify({"message": "Vehicle record deleted successfully"}), 200
 
+# Default route to check if the server is running
+@app.route('/')
+def home():
+    return jsonify({"message": "Server is running!"}), 200
+
 # Run the Flask app
 if __name__ == '__main__':
     app.run(debug=True)
