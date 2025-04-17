@@ -46,3 +46,13 @@ def register_message():
         "text": new_message.text,
         "timestamp": new_message.timestamp}, 201
    )
+    
+@app.route('/Message/<timestamp>', methods=['DELETE'])
+def delete_message(timestamp):
+    message = Message.query.filter_by(timestamp=timestamp).first()
+    if not message:
+        return jsonify({"error": "Message not found"}), 404
+    
+    db.session.delete(message)
+    db.session.commit()
+    return jsonify({"message": "Message deleted successfully"}), 200
