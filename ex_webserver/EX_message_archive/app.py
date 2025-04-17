@@ -31,3 +31,18 @@ def get_mesages_by_timestamp(timestamp):
         "timestamp": message.timestamp
     }
     return jsonify(result), 200
+
+@app.route('/Message', methods=['POST'])
+def register_message():
+    text = request.args.get('text')
+    if not text:
+        return jsonify({"error": "Text is required"}), 400
+    
+    new_message = Message(text=text)
+    db.session.add(new_message)
+    db.session.commit()
+    return jsonify(
+       {"message": "Message registered successfully",
+        "text": new_message.text,
+        "timestamp": new_message.timestamp}, 201
+   )
