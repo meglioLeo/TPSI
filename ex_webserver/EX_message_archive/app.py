@@ -12,7 +12,7 @@ db.init_app(app)
 def get_messages():
     message = Message.query.all()
     if not message:
-        return jsonify({"error": "No message found"}), 404
+        return jsonify([]), 200
     result = []
     for m in message:
         result.append({
@@ -44,8 +44,8 @@ def register_message():
     return jsonify(
        {"message": "Message registered successfully",
         "text": new_message.text,
-        "timestamp": new_message.timestamp}, 201
-   )
+        "timestamp": new_message.timestamp}
+   ), 201
     
 @app.route('/Message/<timestamp>', methods=['DELETE'])
 def delete_message(timestamp):
