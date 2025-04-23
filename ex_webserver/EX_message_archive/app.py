@@ -56,3 +56,6 @@ def delete_message(timestamp):
     db.session.delete(message)
     db.session.commit()
     return jsonify({"message": "Message deleted successfully"}), 200
+
+if __name__ == '__main__':
+    app.run(debug=True)
