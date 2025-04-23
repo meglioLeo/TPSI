@@ -28,27 +28,24 @@ def messages_to_xml(messages):
 
 @app.route('/Messages', methods=['GET'])
 def get_messages():
-    message = Message.query.all()
-    if not message:
-        return jsonify({"error": "No message found"}), 404
-    result = []
-    for m in message:
-        result.append({
-                "text": m.text,
-                "timestamp": m.timestamp
-            })
-    return jsonify(result), 200
+    messages = Message.query.all()
+    if not messages:
+        return Response("<message-list></message-list>", mimetype='application/xml'), 200  # empty list
+    
+    xml_elem = messages_to_xml(messages)
+    xml_str = ET.tostring(xml_elem, encoding='unicode')   # convert to unicode string
+    return Response(xml_str, mimetype='application/xml'), 200
+
 
 @app.route('/Messages/<timestamp>', methods=['GET'])
 def get_messages_by_timestamp(timestamp):
     message = Message.query.filter_by(timestamp = timestamp).first()
     if not message:
-        return jsonify({"error": "No message found"}), 404
-    result = {
-        "text": message.text,
-        "timestamp": message.timestamp
-    }
-    return jsonify(result), 200
+        return Response("<message></message>", mimetype='application/xml'), 404 # message not found
+    
+    xml_elem = message_to_xml(message)
+    xml_str = ET.tostring(xml_elem, encoding='unicode')
+    return Response(xml_str, mimetype='application/xml'), 200
 
 @app.route('/Message', methods=['POST'])
 def register_message():
