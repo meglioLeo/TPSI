@@ -59,8 +59,8 @@ def register_message():
     return jsonify(
        {"message": "Message registered successfully",
         "text": new_message.text,
-        "timestamp": new_message.timestamp}, 201
-   )
+        "timestamp": new_message.timestamp}
+    ),201
     
 @app.route('/Message/<timestamp>', methods=['DELETE'])
 def delete_message(timestamp):
