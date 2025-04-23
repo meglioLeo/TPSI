@@ -6,7 +6,7 @@ from config import Config
 
 app = Flask(__name__)
 app.config.from_object(Config)
-db.init.app(app)
+db.init_app(app)
 
 @app.route('/Messages', methods=['GET'])
 def get_messages():
@@ -22,7 +22,7 @@ def get_messages():
     return jsonify(result), 200
 
 @app.route('/Messages/<timestamp>', methods=['GET'])
-def get_mesages_by_timestamp(timestamp):
+def get_messages_by_timestamp(timestamp):
     message = Message.query.filter_by(timestamp = timestamp).first()
     if not message:
         return jsonify({"error": "No message found"}), 404
