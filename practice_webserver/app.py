@@ -121,6 +121,11 @@ def get_museums_by_visitors():
     min_visitors = request.args.get('min_visitors', type=int)
     max_visitors = request.args.get('max_visitors', type=int)
     
+    if min_visitors is None or max_visitors is None:
+        return jsonify({"error": "min_visitors and max_visitors are required"}), 400
+    if min_visitors > max_visitors:
+        return jsonify({"error": "min_visitors should be less than max_visitors"}), 400
+    
     museums = Museum.query.all()
     if not museums:
         return [], 200
@@ -128,7 +133,7 @@ def get_museums_by_visitors():
     result = []
     
     for museum in museums:
-        if (min_visitors < museum.annual_visitors < max_visitors):    # Doesn't check if the min/max visitors are None
+        if (min_visitors < museum.annual_visitors < max_visitors):
             result.append({
                 "id": museum.id,
                 "name": museum.name,
@@ -139,4 +144,33 @@ def get_museums_by_visitors():
                 "exhibition_area": museum.exhibition_area
             })
     
+    return jsonify(result), 200
+
+# Get museum by exhibition area
+@app.route('/museum/statistics/area', methods=['GET'])
+def get_museums_by_area():
+    min_area = request.args.get('min_area', type=float)
+    max_area = request.args.get('max_area', type=float)
+    
+    if min_area is None or max_area is None:
+        return jsonify({"error": "min_area and max_area are required"}), 400
+    if min_area > max_area:
+        return jsonify({"error": "min_area should be less than max_area"}), 400
+    
+    museums = Museum.query.all()
+    if not museums:
+        return [], 200
+    
+    result = []
+    for museum in museums:
+        if (min_area < museum.exhibition_area < max_area):    # Doesn't check if the min/max area are None
+            result.append({
+                "id": museum.id,
+                "name": museum.name,
+                "city": museum.city,
+                "country": museum.country,
+                "annual_visitors": museum.annual_visitors,
+                "foundation_date": museum.foundation_date,
+                "exhibition_area": museum.exhibition_area
+            })
     return jsonify(result), 200
