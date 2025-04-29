@@ -9,7 +9,7 @@ class Museum(db.Model):
     city = db.Column(db.String(100), nullable=False)
     country = db.Column(db.String(100), nullable=False)
     annual_visitors = db.Column(db.Integer)
-    foundation_date = db.Column(db.Date)  
+    foundation_date = db.Column(db.String(10)) # YYYY-MM-DD format  
     exhibition_area = db.Column(db.Float)
 
     def __repr__(self):

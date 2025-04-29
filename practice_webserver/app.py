@@ -12,28 +12,22 @@ db.init_app(app)
 def register_museum():
     data = request.get_json()
     if not data or 'name' not in data or 'city' not in data or 'country' not in data:
-        return jsonify({"error": "Name, city, and country are required"}), 400
-
-    name = data['name']
-    city = data['city']
-    country = data['country']
-    annual_visitors = data.get('annual_visitors')
-    foundation_date = data.get('foundation_date')
-    exhibition_area = data.get('exhibition_area')
+        return jsonify({"error": "Name, city and country are required"}), 400
 
     new_museum = Museum(
-        name=name,
-        city=city,
-        country=country,
-        annual_visitors=annual_visitors,
-        foundation_date=foundation_date,
-        exhibition_area=exhibition_area
+        name=data['name'],
+        city=data['city'],
+        country=data['country'],
+        annual_visitors=data['annual_visitors'] if 'annual_visitors' in data else None,
+        foundation_date=data['foundation_date'] if 'foundation_date' in data else None,
+        exhibition_area=data['exhibition_area'] if 'exhibition_area' in data else None
     )
-    
+
     db.session.add(new_museum)
     db.session.commit()
-    
+
     return jsonify({"message": "Museum registered successfully"}), 201
+
 
 # Get all museums
 @app.route('/get_museums', methods=['GET'])
@@ -163,7 +157,7 @@ def get_museums_by_area():
     
     result = []
     for museum in museums:
-        if (min_area < museum.exhibition_area < max_area):    # Doesn't check if the min/max area are None
+        if (min_area < museum.exhibition_area < max_area):
             result.append({
                 "id": museum.id,
                 "name": museum.name,
