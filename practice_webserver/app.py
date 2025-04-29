@@ -102,3 +102,15 @@ def update_museum(id):
     db.session.commit()
     
     return jsonify({"message": "Museum updated successfully"}), 200
+
+# Delete a museum
+@app.route('/delete_museum/<id>', methods=['DELETE'])
+def delete_museum(id):
+    museum = Museum.query.filter_by(id=id).first()
+    if not museum:
+        return jsonify({"error": "Museum not found"}), 404
+
+    db.session.delete(museum)
+    db.session.commit()
+    
+    return jsonify({"message": "Museum deleted successfully"}), 200
