@@ -114,3 +114,29 @@ def delete_museum(id):
     db.session.commit()
     
     return jsonify({"message": "Museum deleted successfully"}), 200
+
+# Get museum by annual visitors
+@app.route('/museums/statistics/visitors', methods=['GET'])
+def get_museums_by_visitors():
+    min_visitors = request.args.get('min_visitors', type=int)
+    max_visitors = request.args.get('max_visitors', type=int)
+    
+    museums = Museum.query.all()
+    if not museums:
+        return [], 200
+    
+    result = []
+    
+    for museum in museums:
+        if (min_visitors < museum.annual_visitors < max_visitors):    # Doesn't check if the min/max visitors are None
+            result.append({
+                "id": museum.id,
+                "name": museum.name,
+                "city": museum.city,
+                "country": museum.country,
+                "annual_visitors": museum.annual_visitors,
+                "foundation_date": museum.foundation_date,
+                "exhibition_area": museum.exhibition_area
+            })
+    
+    return jsonify(result), 200
