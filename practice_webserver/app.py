@@ -58,7 +58,7 @@ def get_museums():
     return jsonify(result), 200
 
 # Get a specific museum by ID
-@app.route('/get_museum/<id>', methodS=['GET'])
+@app.route('/get_museum/<id>', methods=['GET'])
 def get_museum(id):
     museum = Museum.query.filter_by(id=id).first()
     if not museum:
