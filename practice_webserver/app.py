@@ -1,0 +1,174 @@
+from flask import Flask, jsonify, request
+from models import db, Museum
+from config import Config
+from datetime import datetime
+
+app = Flask(__name__)
+app.config.from_object(Config)
+db.init_app(app)
+
+# Register a new museum
+@app.route('/register_museum', methods=['POST'])
+def register_museum():
+    data = request.get_json()
+    if not data or 'name' not in data or 'city' not in data or 'country' not in data:
+        return jsonify({"error": "Name, city and country are required"}), 400
+
+    new_museum = Museum(
+        name=data['name'],
+        city=data['city'],
+        country=data['country'],
+        annual_visitors=data['annual_visitors'] if 'annual_visitors' in data else None,
+        foundation_date=data['foundation_date'] if 'foundation_date' in data else None,
+        exhibition_area=data['exhibition_area'] if 'exhibition_area' in data else None
+    )
+
+    db.session.add(new_museum)
+    db.session.commit()
+
+    return jsonify({"message": "Museum registered successfully"}), 201
+
+
+# Get all museums
+@app.route('/get_museums', methods=['GET'])
+def get_museums():
+    museums = Museum.query.all()
+    
+    if not museums:
+        return [], 200
+    
+    result = []
+    for museum in museums:
+        result.append({
+            "id": museum.id,
+            "name": museum.name,
+            "city": museum.city,
+            "country": museum.country,
+            "annual_visitors": museum.annual_visitors,
+            "foundation_date": museum.foundation_date,
+            "exhibition_area": museum.exhibition_area
+        })
+        
+    return jsonify(result), 200
+
+# Get a specific museum by ID
+@app.route('/get_museum/<id>', methods=['GET'])
+def get_museum(id):
+    museum = Museum.query.filter_by(id=id).first()
+    if not museum:
+        return jsonify({"error": "Museum not found"}), 404
+    result = {
+        "id": museum.id,
+        "name": museum.name,
+        "city": museum.city,
+        "country": museum.country,
+        "annual_visitors": museum.annual_visitors,
+        "foundation_date": museum.foundation_date,
+        "exhibition_area": museum.exhibition_area
+    }
+    
+    return jsonify(result), 200
+
+# Update a museum's information
+@app.route('/update_museum/<id>', methods=['PUT'])
+def update_museum(id):
+    data = request.get_json()
+    if not data:
+        return jsonify({"error": "No data provided"}), 400
+
+    museum = Museum.query.filter_by(id=id).first()
+    if not museum:
+        return jsonify({"error": "Museum not found"}), 404
+
+    if 'name' in data:
+        museum.name = data['name']
+    if 'city' in data:
+        museum.city = data['city']
+    if 'country' in data:
+        museum.country = data['country']
+    if 'annual_visitors' in data:
+        museum.annual_visitors = data['annual_visitors']
+    if 'foundation_date' in data:
+        museum.foundation_date = data['foundation_date']
+    if 'exhibition_area' in data:
+        museum.exhibition_area = data['exhibition_area']
+
+    db.session.commit()
+    
+    return jsonify({"message": "Museum updated successfully"}), 200
+
+# Delete a museum
+@app.route('/delete_museum/<id>', methods=['DELETE'])
+def delete_museum(id):
+    museum = Museum.query.filter_by(id=id).first()
+    if not museum:
+        return jsonify({"error": "Museum not found"}), 404
+
+    db.session.delete(museum)
+    db.session.commit()
+    
+    return jsonify({"message": "Museum deleted successfully"}), 200
+
+# Get museum by annual visitors
+@app.route('/museums/statistics/visitors', methods=['GET'])
+def get_museums_by_visitors():
+    min_visitors = request.args.get('min_visitors', type=int)
+    max_visitors = request.args.get('max_visitors', type=int)
+    
+    if min_visitors is None or max_visitors is None:
+        return jsonify({"error": "min_visitors and max_visitors are required"}), 400
+    if min_visitors > max_visitors:
+        return jsonify({"error": "min_visitors should be less than max_visitors"}), 400
+    
+    museums = Museum.query.all()
+    if not museums:
+        return [], 200
+    
+    result = []
+    
+    for museum in museums:
+        if (min_visitors < museum.annual_visitors < max_visitors):
+            result.append({
+                "id": museum.id,
+                "name": museum.name,
+                "city": museum.city,
+                "country": museum.country,
+                "annual_visitors": museum.annual_visitors,
+                "foundation_date": museum.foundation_date,
+                "exhibition_area": museum.exhibition_area
+            })
+    
+    return jsonify(result), 200
+
+# Get museum by exhibition area
+@app.route('/museum/statistics/area', methods=['GET'])
+def get_museums_by_area():
+    min_area = request.args.get('min_area', type=float)
+    max_area = request.args.get('max_area', type=float)
+    
+    if min_area is None or max_area is None:
+        return jsonify({"error": "min_area and max_area are required"}), 400
+    if min_area > max_area:
+        return jsonify({"error": "min_area should be less than max_area"}), 400
+    
+    museums = Museum.query.all()
+    if not museums:
+        return [], 200
+    
+    result = []
+    for museum in museums:
+        if (min_area < museum.exhibition_area < max_area):
+            result.append({
+                "id": museum.id,
+                "name": museum.name,
+                "city": museum.city,
+                "country": museum.country,
+                "annual_visitors": museum.annual_visitors,
+                "foundation_date": museum.foundation_date,
+                "exhibition_area": museum.exhibition_area
+            })
+    return jsonify(result), 200
+
+if __name__ == '__main__':
+    with app.app_context():
+        app.run(debug=True)
