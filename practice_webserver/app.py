@@ -51,8 +51,24 @@ def get_museums():
             "city": museum.city,
             "country": museum.country,
             "annual_visitors": museum.annual_visitors,
-            "foundation_date": museum.foundation_date.isoformat() if museum.foundation_date else None,
+            "foundation_date": museum.foundation_date,
             "exhibition_area": museum.exhibition_area
         })
         
     return jsonify(result), 200
+
+# Get a specific museum by ID
+@app.route('/get_museum/<id>', methodS=['GET'])
+def get_museum(id):
+    museum = Museum.query.filter_by(id=id).first()
+    if not museum:
+        return jsonify({"error": "Museum not found"}), 404
+    result = {
+        "id": museum.id,
+        "name": museum.name,
+        "city": museum.city,
+        "country": museum.country,
+        "annual_visitors": museum.annual_visitors,
+        "foundation_date": museum.foundation_date,
+        "exhibition_area": museum.exhibition_area
+    }
