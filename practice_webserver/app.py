@@ -174,3 +174,7 @@ def get_museums_by_area():
                 "exhibition_area": museum.exhibition_area
             })
     return jsonify(result), 200
+
+if __name__ == '__main__':
+    with app.app_context():
+        app.run(debug=True)
