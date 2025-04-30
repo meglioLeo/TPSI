@@ -107,6 +107,7 @@ def delete_city(id):
 
     return jsonify({"message": "City deleted successfully"}), 200 
 
+# Get cities in population range
 @app.route('/cities/statistics/population', methods=['GET'])
 def get_cities_by_population():
     minPopulation = request.args.get('minPopulation', type=int)
@@ -125,6 +126,36 @@ def get_cities_by_population():
     result = []
     for city in cities:
         if minPopulation < city.population < maxPopulation:
+            result.append({
+                "id": city.id,
+                "name": city.name,
+                "country": city.country,
+                "population": city.population,
+                "area": city.area,
+                "last_detection": city.last_detection
+            })
+
+    return jsonify(result), 200
+
+# Get cities in area range
+@app.route('/cities/statistics/area', methods=['GET'])
+def get_cities_by_area():
+    minArea = request.args.get('minArea', type=int)
+    maxArea = request.args.get('maxPopulation', type=int)
+
+    if minArea is None or maxArea is None:
+        return jsonify({"error": "minArea and maxPopulation are required"}), 400
+    if minArea > maxArea:
+        return jsonify({"error": "minArea should be less than maxArea"}), 400
+    
+    cities = City.query.all()
+    
+    if not cities:
+        return [], 200
+    
+    result = []
+    for city in cities:
+        if minArea < city.area < maxArea:
             result.append({
                 "id": city.id,
                 "name": city.name,
