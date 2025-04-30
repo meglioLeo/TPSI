@@ -33,7 +33,7 @@ def get_city_by_id():
     city = City.query.filter_by(id=id).first()
 
     if not city:
-        return jsonify({"error": "City not found"}), 404    #in this case return a 404
+        return jsonify({"error": "City not found"}), 404
     
     result = {
         "id": city.id,
@@ -44,3 +44,22 @@ def get_city_by_id():
     }
 
     return jsonify(result), 200
+
+# Register new city
+@app.route('/city', methods=['POST'])
+def register_city():
+    data = request.get_json()
+    if  not data or "name" not in data or "country" not in data or "area" not in data or "last_detection" not in data:
+        return jsonify({{"error": "Name, country, area and last detection are required"}}), 400
+    
+    new_city = City(
+        name = data['name'],
+        country = data['country'],
+        area = data['area'],
+        last_detection = data['last_detection']
+    )
+
+    db.session.add(new_city)
+    db.session.commit()
+
+    return jsonify({"message": "City registered successfully"}), 201
