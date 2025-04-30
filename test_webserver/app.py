@@ -21,6 +21,7 @@ def get_cities():
             "id": city.id,
             "name": city.name,
             "country": city.country,
+            "population": city.population,
             "area": city.area,
             "last_detection": city.last_detection
         })
@@ -39,6 +40,7 @@ def get_city_by_id(id):
         "id": city.id,
         "name": city.name,
         "country": city.country,
+        "population": city.population,
         "area": city.area,
         "last_detection": city.last_detection
     }
@@ -55,6 +57,7 @@ def register_city():
     new_city = City(
         name = data['name'],
         country = data['country'],
+        population = data['population'],
         area = data['area'],
         last_detection = data['last_detection']
     )
@@ -80,6 +83,8 @@ def update_city(id):
         city.name = data['name']
     if 'country' in data:
         city.country = data['country']
+    if 'population' in data:
+        city.population = data['population']
     if 'area' in data:
         city.area = data['area']
     if 'last_detection' in data:
@@ -100,4 +105,4 @@ def delete_city(id):
     db.session.delete(city)
     db.session.commit()
 
-    return jsonify({"message": "City deleted successfully"}), 200
+    return jsonify({"message": "City deleted successfully"}), 200 
