@@ -18,11 +18,29 @@ def get_cities():
 
     for city in cities:
         result.append({
-            "ID": city.ID,
+            "id": city.id,
             "name": city.name,
             "country": city.country,
             "area": city.area,
             "last_detection": city.last_detection
         })
+
+    return jsonify(result), 200
+
+# Get specific city by id
+@app.route('/city', methods=['GET'])
+def get_city_by_id():
+    city = City.query.filter_by(id=id).first()
+
+    if not city:
+        return jsonify({"error": "City not found"}), 404    #in this case return a 404
+    
+    result = {
+        "id": city.id,
+        "name": city.name,
+        "country": city.country,
+        "area": city.area,
+        "last_detection": city.last_detection
+    }
 
     return jsonify(result), 200
