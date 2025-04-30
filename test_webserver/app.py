@@ -106,3 +106,32 @@ def delete_city(id):
     db.session.commit()
 
     return jsonify({"message": "City deleted successfully"}), 200 
+
+@app.route('/cities/statistics/population', methods=['GET'])
+def get_cities_by_population():
+    minPopulation = request.args.get('minPopulation', type=int)
+    maxPopulation = request.args.get('maxPopulation', type=int)
+
+    if minPopulation is None or maxPopulation is None:
+        return jsonify({"error": "minPopulation and maxPopulation are required"}), 400
+    if minPopulation > maxPopulation:
+        return jsonify({"error": "minPopulation should be less than maxPopulation"}), 400
+    
+    cities = City.query.all()
+    
+    if not cities:
+        return [], 200
+    
+    result = []
+    for city in cities:
+        if minPopulation < city.population < maxPopulation:
+            result.append({
+                "id": city.id,
+                "name": city.name,
+                "country": city.country,
+                "population": city.population,
+                "area": city.area,
+                "last_detection": city.last_detection
+            })
+
+    return jsonify(result), 200
