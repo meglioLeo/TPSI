@@ -9,3 +9,6 @@ class City(db.Model):
     country = db.Column(db.String(100), nullable = False)
     area = db.Column(db.Float, nullable = False)
     last_detection = db.Column(db.String, nullable = False)   # YYYY-MM-DD format
+
+    def __repr__(self):
+        return f"<City: {self.name} in {self.country}>"
