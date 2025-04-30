@@ -88,3 +88,16 @@ def update_city(id):
     db.session.commit()
 
     return jsonify({"message": "City updated successfully"}), 200
+
+# Delete city
+@app.route('/city', methods=['DELETE'])
+def delete_city(id):
+    city = City.query.filter_by(id=id).first()
+
+    if not city:
+        return jsonify({"error": "City not found"}), 404
+    
+    db.session.delete(city)
+    db.session.commit()
+
+    return jsonify({"message": "City deleted successfully"}), 200
