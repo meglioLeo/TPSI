@@ -29,7 +29,7 @@ def get_cities():
 
 # Get specific city by id
 @app.route('/city', methods=['GET'])
-def get_city_by_id():
+def get_city_by_id(id):
     city = City.query.filter_by(id=id).first()
 
     if not city:
@@ -63,3 +63,28 @@ def register_city():
     db.session.commit()
 
     return jsonify({"message": "City registered successfully"}), 201
+
+# Update city
+@app.route('/city', methods=['PUT'])
+def update_city(id):
+    data = request.get_json()
+
+    if not data:
+        return jsonify({"error": "No data provided"}), 400
+
+    city = City.query.filter_by(id=id).first()
+    if not city:
+        return jsonify({"error": "City not found"}), 404
+
+    if 'name' in data:
+        city.name = data['name']
+    if 'country' in data:
+        city.country = data['country']
+    if 'area' in data:
+        city.area = data['area']
+    if 'last_detection' in data:
+        city.last_detection = data['last_detection']
+
+    db.session.commit()
+
+    return jsonify({"message": "City updated successfully"}), 200
